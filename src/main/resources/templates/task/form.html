@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout}">
+<div th:fragment="content">
+    <h1 th:text="${task.id != null ? 'Редактировать' : 'Создать'}">Форма</h1>
+    <form th:action="@{${task.id != null ? '/web/tasks/' + task.id : '/web/tasks'}}" method="post">
+        <div>
+            <label>Название:</label>
+            <input type="text" name="title" th:value="${task.title}" required minlength="1"/>
+        </div>
+        <div>
+            <label>Описание:</label>
+            <textarea name="description" th:text="${task.description}"></textarea>
+        </div>
+        <div>
+            <label>Приоритет:</label>
+            <select name="priority">
+                <option th:each="p : ${priorities}" th:value="${p}"
+                        th:text="${p}" th:selected="${p == task.priority}">HIGH</option>
+            </select>
+        </div>
+        <button type="submit">Сохранить</button>
+        <a href="/web/tasks" class="btn">Отмена</a>
+    </form>
+</div>
+</html>

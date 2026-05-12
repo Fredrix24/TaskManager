@@ -1,0 +1,30 @@
+app:
+  name: "Task Manager"
+  max-tasks: 5
+  default-priority: MEDIUM
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:h2:mem:taskdb
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: false
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+logging:
+  level:
+    org.flywaydb: DEBUG
+
+jwt:
+  secret: mySuperSecretKeyThatIsAtLeast32CharactersLong
+  expiration: 604800000

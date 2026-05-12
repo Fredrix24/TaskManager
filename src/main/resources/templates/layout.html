@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        nav { background: #333; padding: 10px; margin-bottom: 20px; }
+        nav a { color: white; margin-right: 15px; text-decoration: none; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #4CAF50; color: white; }
+        .btn { padding: 5px 10px; text-decoration: none; border: 1px solid #ccc; border-radius: 3px; }
+        .btn-delete { background: #f44336; color: white; border: none; cursor: pointer; }
+        .btn-add { background: #4CAF50; color: white; }
+        form { max-width: 400px; }
+        form div { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select, textarea { width: 100%; padding: 8px; }
+        button { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+        .error { color: red; margin-bottom: 10px; }
+        .logout { float: right; }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="/web/tasks">Список задач</a>
+    <a href="/web/tasks/new" sec:authorize="hasAnyRole('USER','ADMIN')">+ Создать</a>
+    <span class="logout">
+            <span sec:authentication="name" style="color:white; margin-right:10px;"></span>
+            <a href="/logout" style="color:white;">Выйти</a>
+        </span>
+</nav>
+<div th:insert="~{::content}"></div>
+</body>
+</html>
