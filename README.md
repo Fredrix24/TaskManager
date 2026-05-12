@@ -12,14 +12,16 @@ Flyway
 Docker + docker-compose.
 
 Быстрый старт локально (H2 в памяти): 
-``bash
+```bash
 mvn clean spring-boot:run 
-
+```
 (откроется на http://localhost:8080). 
 
 ### Docker (PostgreSQL): 
-cp .env.example .env && docker compose up --build.
-
+cp .env.example .env && 
+```bash
+docker compose up --build.
+```
 **Тестовые пользователи:** 
 admin@test.com / admin123 (ADMIN), 
 user@test.com / user123 (USER).
@@ -31,10 +33,10 @@ user@test.com / user123 (USER).
 http://localhost:8080/login — просмотр, создание, редактирование задач. Кнопка "Удалить" только для ADMIN.
 
 ### Тесты 
-``bash
+```bash
 mvn test 
 (12 unit-тестов с Mockito, без Spring-контекста).
-
+```
 ### Миграции 
 Flyway: V1__create_tasks_table.sql (таблицы + тестовые данные), V2__add_created_at.sql (поле created_at).
 
@@ -42,6 +44,7 @@ Flyway: V1__create_tasks_table.sql (таблицы + тестовые данны
 config/ (AppConfig, AppProperties), controller/ (AuthController, TaskController, TaskWebController, GlobalExceptionHandler), dto/ (AuthResponse, LoginRequest, RegisterRequest), model/ (Task, User, Priority, Status, Role), repository/ (TaskRepository, UserRepository), security/ (SecurityConfig, JwtAuthFilter, CustomAuthEntryPoint, CustomAccessDeniedHandler), service/ (AuthService, JwtService, TaskService, TaskServiceImpl, TaskStatsService, UserDetailsServiceImpl).
 
 ### Docker: 
-``bash
-docker compose up --build 
+```bash
+docker compose up --build
+```
 (запуск), docker compose down (остановка), docker compose down -v (удалить данные).
